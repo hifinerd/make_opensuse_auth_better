@@ -35,7 +35,7 @@ Once this is complete, you will need to log out and restart your display manager
 ```
 # systemctl restart sddm
 ```
-If all goes well, you should be able to authenticate with `sudo` using your user password
+If all goes well, you should be able to authenticate with `sudo` using your user password.
 
 ## Polkit
 Create a new file at `/etc/polkit-1/rules.d/50-default.rules` and populate it with the following contents using your favorite text editor:
