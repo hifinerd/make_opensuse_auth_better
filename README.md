@@ -53,6 +53,11 @@ pkexec env "DISPLAY=$DISPLAY" "XAUTHORITY=$XAUTHORITY" "QT_QPA_PLATFORMTHEME=kde
 ```
 We use this instead of directly running YaST in order for the root user's Qt theme to be used instead of an unsightly fallback theme.
 
+Make the new script executable:
+```
+# chmod +x /usr/local/sbin/polkityast
+```
+
 Make a new file at `/usr/share/polkit-1/actions/org.freedesktop.policykit.yast.policy`, you know the drill:
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
