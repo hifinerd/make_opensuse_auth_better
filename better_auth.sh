@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # -*- coding: utf-8 -*-
 
-set -xve
 # The script need to be run with sudo for the first time setup
 # Verify if the user is sudo or root, if not then ask for sudo password and at the same time run the script with elevated privileges
 if [ "$UID" != 0 ]; then
@@ -66,3 +65,5 @@ wheel_setup
 polkit_setup
 polkit_yast
 YaST_desktop
+
+echo "Done, system customization completed."
