@@ -2,7 +2,7 @@
 A guide on how to fix openSUSE's quirks regarding authentication.
 
 ## Why?
-By default, openSUSE uses the root password for privilege elevation. This is not ideal for several reasons, the most major being [security](https://apple.stackexchange.com/questions/192365/is-it-ok-to-use-the-root-user-as-a-normal-user/192422#192422), since you need to give the root password to anyone who needs elevated priveliges, and the fact that most Linux distros do not use the root password in this way.
+By default, openSUSE uses the root password for privilege elevation. This is not ideal for several reasons, the most major being [security](https://apple.stackexchange.com/questions/192365/is-it-ok-to-use-the-root-user-as-a-normal-user/192422#192422), since you need to give the root password to anyone who needs elevated priveliges, which has the potential to cause serious damage to your system, and the fact that most Linux distros do not use the root password in this way.
 This guide seeks to fix these issues by allowing you to use the user password for authentication.
 
 # Method 1: Automated script
