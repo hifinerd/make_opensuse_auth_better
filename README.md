@@ -41,6 +41,8 @@ Run the following command, replacing `$YOUR_USERNAME` with your username:
 
 ## Sudo
 This is recommended by the openSUSE developers, as seen in the following snippet from `/etc/sudoers`, but this is still included for completeness.
+
+This is *especially* recommended if you are on a multi-user system, as using the wheel group instead of the root password allows for greater control over who gets superuser privileges and who doesn't.
 ```
 ## In the default (unconfigured) configuration, sudo asks for the root password.
 ## This allows use of an ordinary user account for administration of a freshly
