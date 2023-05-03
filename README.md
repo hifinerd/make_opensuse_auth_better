@@ -21,6 +21,13 @@ Run the following command, replacing `$YOUR_USERNAME` with your username:
 ```
 
 ## Sudo
+This is recommended by the openSUSE developers, as seen in the following snippet from `/etc/sudoers, but this is still included for completeness.
+```
+## In the default (unconfigured) configuration, sudo asks for the root password.
+## This allows use of an ordinary user account for administration of a freshly
+## installed system. When configuring sudo, delete the two
+## following lines:
+```
 Run `visudo` as root, and comment out the the line that starts with `Defaults targetpw` and the line directly under it, like so:
 ```
 # Defaults targetpw   # ask for the password of the target user i.e. root
