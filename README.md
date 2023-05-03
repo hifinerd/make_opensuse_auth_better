@@ -5,6 +5,25 @@ A guide on how to fix openSUSE's quirks regarding authentication.
 By default, openSUSE uses the root password for privilege elevation. This is not ideal for several reasons, the most major being [security](https://apple.stackexchange.com/questions/192365/is-it-ok-to-use-the-root-user-as-a-normal-user/192422#192422), since you need to give the root password to anyone who needs elevated priveliges, and the fact that most Linux distros do not use the root password in this way.
 This guide seeks to fix these issues by allowing you to use the user password for authentication.
 
+# Method 1: Automated script
+This is recommended if you do not wish to follow these instructions manually, for example, if you are a sysadmin deploying these changes to a fleet of devices.
+
+Download the script by running the following command:
+```
+$ wget https://raw.githubusercontent.com/hifinerd/make_opensuse_auth_better/main/better_auth.sh
+```
+Use your favorite text editor to read the script in its entirety, so you know exactly what it will do to your system.
+
+Once you finish reading the script, run the following command to make it executable:
+```
+$ chmod +x ./better_auth.sh
+```
+Finally, execute the script:
+```
+$ ./better_auth.sh
+```
+# Method 2: Manual modification
+This is recommended if you would rather not use a shell script, for example, if you want to make absolutely sure that you know exactly what is being done to your system.
 ## Before you begin
 
 Before following the rest of this guide, make sure to add yourself to the `wheel` group, since by the end of this guide, you will need to be in that group to get elevated permissions.
@@ -91,3 +110,13 @@ Finally, edit `~/.local/share/applications/org.opensuse.YaST.desktop` and replac
 Exec=/usr/bin/pkexec /usr/local/sbin/polkityast
 ```
 If all goes well, you should be able to launch YaST with polkit instead of `kdesu` or `gnomesu`, and you should be able to use the user password instead of the root password.
+
+## Final notes
+### A security advisory
+Any user in the `wheel` group should guard their password carefully, since they now have the ability to become root without the root password.
+### Changing root's Qt theme
+Run the following command:
+```
+$ pkexec env "DISPLAY=$DISPLAY" "XAUTHORITY=$XAUTHORITY" "QT_QPA_PLATFORMTHEME=kde" systemsettings
+```
+Then, change root's application theme like you would for any other account.
