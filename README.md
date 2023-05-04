@@ -2,8 +2,7 @@
 A guide on how to fix openSUSE's quirks regarding authentication.
 
 ## Why?
-By default, openSUSE uses the root password for privilege elevation. This is not ideal for several reasons, the most major being [security](https://apple.stackexchange.com/questions/192365/is-it-ok-to-use-the-root-user-as-a-normal-user/192422#192422), since you need to give the root password to anyone who needs elevated priveliges, which has the potential to cause serious damage to your system, and while this isn't as problematic on single-user systems, it is still not ideal, since most Linux distros do not use the root password in this way.
-This guide seeks to fix these issues by allowing you to use the user password for authentication.
+By default, openSUSE uses the root password for privilege elevation, which is a setup intended for single system administrators. If you need to provide multiple users elevated privileges, or if you are more used to using the user password to authenticate, like with Ubuntu or Fedora, you can follow this guide to allow you to use the user password for authentication as root.
 
 # Method 1: Automated script
 This is recommended if you do not wish to follow these instructions manually, for example, if you are a sysadmin deploying these changes to a fleet of devices.
