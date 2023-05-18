@@ -26,9 +26,18 @@ EOF
 
 function polkit_yast() {
 
-    # We use this instead of directly running YaST in order for the root user's Qt theme to be used instead of an unsightly fallback theme.
+    # We use this instead of directly running YaST in order for the root user's Qt theme to be used instead of an unsightly fallback theme, and to allow YaST to display a GUI on some Wayland compositors.
     cat >/usr/local/sbin/polkityast <<EOF
 #!/bin/bash
+if [ $XDG_CURRENT_DESKTOP = Hyprland ] || [ $XDG_CURRENT_DESKTOP = sway ]
+then
+        xhost si:localuser:root
+        on_exit(){
+                xhost -si:localuser:root
+        }
+        trap 'on_exit' EXIT
+fi
+
 pkexec env "DISPLAY=$DISPLAY" "XAUTHORITY=$XAUTHORITY" "QT_QPA_PLATFORMTHEME=kde" /sbin/yast2
 EOF
 
