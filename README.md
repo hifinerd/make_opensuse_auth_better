@@ -76,9 +76,18 @@ Save the file, and the changes should apply immediately. If all goes well, you s
 Create a new file at `/usr/local/sbin/polkityast` and populate it with the following contents using your favorite text editor:
 ```bash
 #!/bin/bash
+if [ $XDG_CURRENT_DESKTOP = Hyprland ] || [ $XDG_CURRENT_DESKTOP = sway ]
+then
+        xhost si:localuser:root
+        on_exit(){
+                xhost -si:localuser:root
+        }
+        trap 'on_exit' EXIT
+fi
+
 pkexec env "DISPLAY=$DISPLAY" "XAUTHORITY=$XAUTHORITY" "QT_QPA_PLATFORMTHEME=kde" /sbin/yast2
 ```
-We use this instead of directly running YaST in order for the root user's Qt theme to be used instead of an unsightly fallback theme.
+We use this instead of directly running YaST in order for the root user's Qt theme to be used instead of an unsightly fallback theme, and to allow YaST to display a GUI on some Wayland compositors.
 
 Make the new script executable:
 ```
